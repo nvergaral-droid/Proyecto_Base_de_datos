@@ -16,13 +16,13 @@ Sistema de gestión de inventario y ventas para una tienda especializada en One 
 * **Herramientas:** DB Browser for SQLite, VSCode
 
 ## Estructura del Repositorio
-* `/src`: Código fuente de la aplicación (`Interfaz.py`).
-* `/database`: Archivo de base de datos (`.db`) y proyecto de DB Browser.
-* `/docs`: Informe final en PDF y recursos gráficos.
+* `/Interfaz`: Código fuente de la aplicación (`Interfaz.py`).
+* `/Base_de_datos`: Archivo de base de datos (`.db`) y proyecto de DB Browser.
+* `/Documentos`: Informe final en PDF y recursos gráficos.
 
 ## Instalación y Ejecución
 1. Clonar el repositorio.
 2. Asegurarse de tener Python instalado.
 3. Ejecutar el script principal:
    ```bash
-   python src/Interfaz.py
+   python Interfaz/Interfaz.py
