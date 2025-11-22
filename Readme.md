@@ -21,8 +21,7 @@ Sistema de gestión de inventario y ventas para una tienda especializada en One 
 * `/Documentos`: Informe final en PDF y recursos gráficos.
 
 ## Instalación y Ejecución
-1. Clonar el repositorio.
-2. Asegurarse de tener Python instalado.
-3. Ejecutar el script principal:
-   ```bash
-   python Interfaz/Interfaz.py
+Para evitar errores de rutas, por favor siga estos pasos estrictamente:
+1. Descargue el repositorio como ZIP (Botón **<> Code** -> **Download ZIP**).
+2. **IMPORTANTE:** Descomprima el archivo ZIP completamente (Click derecho -> Extraer todo).
+3. Abra el archivo `Interfaz.py`.
