@@ -1,33 +1,38 @@
 #José Campodonico
 #Nicolás Vergara
+import os
 import tkinter as tk
 from tkinter import ttk, messagebox
 import sqlite3
 from datetime import datetime
 
-DB_NAME = "w1.db"
-
+# --- CONEXIÓN ---
 def conectar():
-    return sqlite3.connect(DB_NAME)
-#VENTANA PRINCIPAL
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, "..", "Base_de_datos", "w1.db")
+    db_path = os.path.normpath(db_path)
+    return sqlite3.connect(db_path)
+
+# --- INICIALIZACIÓN DE LA VENTANA PRINCIPAL ---
 root = tk.Tk()
 root.title("Finis TCGrrae - Gestión Completa")
 root.geometry("1150x780")
 root.configure(bg="#f5f5f5")
 
-#Pestañas
+# --- CONFIGURACIÓN DE PESTAÑAS ---
 tab_control = ttk.Notebook(root)
 tab_inventario = ttk.Frame(tab_control)
 tab_carrito = ttk.Frame(tab_control)
 tab_ventas = ttk.Frame(tab_control)
 tab_recepcion = ttk.Frame(tab_control)  
+
 tab_control.add(tab_inventario, text="Inventario")
 tab_control.add(tab_carrito, text="Carrito de Compras")
 tab_control.add(tab_ventas, text="Ventas Realizadas")
 tab_control.add(tab_recepcion, text="Recepción de Stock")  
 tab_control.pack(expand=1, fill="both")
 
-#PESTAÑA INVENTARIO 
+# --- PESTAÑA INVENTARIO ---
 tk.Label(tab_inventario, text="Inventario por Estante", font=("Arial", 16, "bold"), bg="#f5f5f5").pack(pady=10)
 
 tree_inv = ttk.Treeview(tab_inventario, columns=("ID", "Nombre", "Precio", "Stock", "Estante"), show="headings", height=20)
@@ -61,7 +66,7 @@ def cargar_inventario():
 btn_actualizar = tk.Button(tab_inventario, text="Actualizar Inventario", command=cargar_inventario, bg="#4CAF50", fg="white", font=("Arial", 10, "bold"))
 btn_actualizar.pack(pady=5)
 
-#PESTAÑA CARRITO
+# --- PESTAÑA CARRITO ---
 tk.Label(tab_carrito, text="Carrito de Compras", font=("Arial", 16, "bold"), bg="#f5f5f5").pack(pady=10)
 frame_cliente = tk.LabelFrame(tab_carrito, text="Cliente", padx=10, pady=10, bg="#f5f5f5")
 frame_cliente.pack(padx=20, pady=5, fill="x")
@@ -103,7 +108,7 @@ btn_finalizar.grid(row=0, column=1, padx=10)
 btn_limpiar = tk.Button(frame_botones, text="Limpiar Carrito", bg="#9E9E9E", fg="white", width=20)
 btn_limpiar.grid(row=0, column=2, padx=10)
 
-#PESTAÑA VENTAS REALIZADAS
+# --- PESTAÑA VENTAS REALIZADAS ---
 tk.Label(tab_ventas, text="Historial de Ventas", font=("Arial", 16, "bold"), bg="#f5f5f5").pack(pady=10)
 
 tree_ventas = ttk.Treeview(tab_ventas, columns=("ID", "Fecha", "Cliente", "Total", "Productos"), show="headings", height=20)
@@ -122,7 +127,7 @@ tree_ventas.pack(padx=20, pady=10, fill="both", expand=True)
 btn_actualizar_ventas = tk.Button(tab_ventas, text="Actualizar Ventas", command=lambda: cargar_ventas(), bg="#4CAF50", fg="white", font=("Arial", 10, "bold"))
 btn_actualizar_ventas.pack(pady=5)
 
-#NUEVA PESTAÑA: RECEPCIÓN DE STOCK
+# --- PESTAÑA RECEPCIÓN DE STOCK ---
 tk.Label(tab_recepcion, text="Recepción de Stock", font=("Arial", 16, "bold"), bg="#f5f5f5").pack(pady=15)
 
 frame_recepcion = tk.LabelFrame(tab_recepcion, text="Ingresar Productos al Inventario", padx=15, pady=15, bg="#f5f5f5")
@@ -147,7 +152,7 @@ btn_recepcion.grid(row=3, column=0, columnspan=2, pady=15)
 lbl_mensaje_stock = tk.Label(tab_recepcion, text="", font=("Arial", 11), bg="#f5f5f5", fg="#2E7D32")
 lbl_mensaje_stock.pack(pady=5)
 
-#LÓGICA DEL CARRITO
+# --- LÓGICA DEL CARRITO Y FUNCIONES ---
 carrito = []
 
 def cargar_combos():
@@ -283,7 +288,7 @@ def cargar_ventas():
         tree_ventas.insert("", "end", values=(venta[0], venta[1], venta[2], f"${venta[3]:,}", productos_str))
     conn.close()
 
-#LÓGICA RECEPCIÓN DE STOCK
+# --- LÓGICA RECEPCIÓN DE STOCK ---
 def recibir_stock():
     prod_text = combo_producto_stock.get()
     try:
@@ -313,7 +318,7 @@ def recibir_stock():
 
 btn_recepcion.config(command=recibir_stock)
 
-#INICIAR
+# --- INICIAR APLICACIÓN ---
 cargar_inventario()
 cargar_combos()
 actualizar_carrito()
