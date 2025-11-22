@@ -1,0 +1,28 @@
+# Sistema de Gestión - Finis TCGrrae
+
+Proyecto semestral para la asignatura de **Bases de Datos** de la Facultad de Ingeniería, Universidad Finis Terrae.
+
+## Descripción
+Sistema de gestión de inventario y ventas para una tienda especializada en One Piece TCG. La solución implementa una base de datos relacional normalizada (SQLite) y una interfaz gráfica en Python (Tkinter) para gestionar productos, clientes, ventas y torneos.
+
+## Integrantes
+* **José Campodonico**
+* **Nicolás Vergara**
+
+## Herramientas
+* **Lenguaje:** Python 3.11
+* **Base de Datos:** SQLite 3
+* **Interfaz:** Tkinter
+* **Herramientas:** DB Browser for SQLite, VSCode
+
+## Estructura del Repositorio
+* `/src`: Código fuente de la aplicación (`Interfaz.py`).
+* `/database`: Archivo de base de datos (`.db`) y proyecto de DB Browser.
+* `/docs`: Informe final en PDF y recursos gráficos.
+
+## Instalación y Ejecución
+1. Clonar el repositorio.
+2. Asegurarse de tener Python instalado.
+3. Ejecutar el script principal:
+   ```bash
+   python src/Interfaz.py
